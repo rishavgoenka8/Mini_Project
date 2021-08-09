@@ -56,7 +56,7 @@ S= [c*(b*cos(phi_0)-d*sin(phi_0)), c*(b*cos(phi_0)+d*sin(phi_0));
 Nu= pinv(S)*([v*cos(phi_0), v*sin(phi_0), om]');
 thd_R_0= Nu(1);
 thd_L_0= Nu(2); %
-;
+
 % SIMULATION PARAMETERS
 n=360; % total number of points in simulation
 sim_time=10; % total simulation time
@@ -78,7 +78,7 @@ switch(SIMU)
         else
             load(txt); % Load the pre-existing file if no computation required
         end
-        txt1=['Wheeled Mobile Robot Control;Kd1=',num2str(Kd1),'Kd2=',num2str(Kd2),'Kp1=',num2str(Kp1),'Kp2=',num2str(Kp2)];
+        txt1=['Wheeled Mobile Robot Control'];
         plotbot_WMR(t,Y,1,txt1); %Plot trajectory and errors
         if temp==1
             save(txt); % If computation is done, save to file for later use

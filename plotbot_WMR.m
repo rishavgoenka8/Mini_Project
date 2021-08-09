@@ -1,12 +1,5 @@
 % FUNCTION FOR PLOTTING THE SIMULATED OUTPUT FOR A GIVEN TIME VECTOR AND
 %%% JOINT SPACE ANGLE VECTORS
-% Course: Robotic Manipulation and Mobility
-% Advisor: Dr. V. Krovi
-%
-% Homework Number: 6
-%
-% Names: Sourish Chakravarty
-% 	Hrishi Lalit Shah
 function plotbot_WMR(t,X,index,txt1)
 global b d L1 L2%r a mc mw Ic Iw Im % WMR paramters
 global xe ye rx ry ell_an start_an w % Trajectory information
@@ -25,6 +18,9 @@ y_E=ye+rx*cos(w*t + start_an)*sin(ell_an) + ry*sin(w*t + start_an)*(cos(ell_an))
 plot(x_E,y_E,'-k');
 x_E1=x_E; y_E1=y_E;
 title(txt1);
+
+
+
 % Initial Sketch
 x_C=X(1,1);
 y_C=X(1,2);
@@ -41,6 +37,9 @@ WMR_PLOT1=TR_C2O*[L1;L2;1];
 h1=plot(WMR_PLOT(1,:),WMR_PLOT(2,:),'r','Erasemode','xor');% WMR PLOTTING
 h3=plot(WMR_PLOT1(1),WMR_PLOT1(2),'bo','Erasemode','xor'); % PLot Look ahead point
 ctr=0;
+
+
+
 for i=1:4:length(t)
     x_C=X(i,1);
     y_C=X(i,2);
@@ -74,8 +73,12 @@ close(aviobj);  % Close the avi object
 hold off
 % axis equal;
 % disp(max(err1));
+
 figure(index*3-1);
 plot(time,err1);
+xlabel("time");
+ylabel("err1");
+
 figure(index*3);
 plot(WMR_Coord_List(:,1),WMR_Coord_List(:,2),'bo');
 hold on;

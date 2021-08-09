@@ -12,12 +12,15 @@ phi= X(3);
 % th_L= X(5);
 thd_R= X(6);
 thd_L= X(7);
+
 c= r/(2*b);
+
 S= [  c*(b*cos(phi)-d*sin(phi)),   c*(b*cos(phi)+d*sin(phi));
     c*(b*sin(phi) + d*cos(phi)), c*(b*sin(phi) - d*cos(phi));
                               c,                          -c;
                               1,                           0;
                               0,                           1];
+
 Nu= [thd_R,thd_L]'; % Minimal coordinates
 Q_dot = S*Nu; % Extended coordinates
 xd_C= Q_dot(1);
@@ -76,16 +79,17 @@ M = [m, 0, 2*mw*d*sin(phi), 0 , 0;
     0, 0, 0, Iw, 0;
     0, 0, 0, 0, Iw];
     
-V = [2*mw*d*(om^2)*cos(phi);
+C = [2*mw*d*(om^2)*cos(phi);
     2*mw*d*(om^2)*sin(phi);
     0;
     0;
     0];
-E = [0, 0;
+L = [0, 0;
      0, 0;
      0, 0;
      1, 0;
      0, 1];
-f2= inv(S'*M*S)*(-S'*M*Sd*Nu - S'*V);
-Tau= pinv(inv(S'*M*S)*S'*E)*(u-f2);
-dX = [S*Nu; f2] + [zeros(5,2); inv(S'*M*S)*S'*E]*Tau;
+f2= inv(S'*M*S)*(-S'*M*Sd*Nu - S'*C);
+Tau= pinv(inv(S'*M*S)*S'*L)*(u-f2);
+disp(Tau);
+dX = [S*Nu; f2] + [zeros(5,2); inv(S'*M*S)*S'*L]*Tau;
